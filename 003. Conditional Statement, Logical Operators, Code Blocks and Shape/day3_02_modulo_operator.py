@@ -5,6 +5,6 @@
 number = int(input("Please input a number: "))
 
 if number % 2 == 0:
-    print("Even Number")
+    print(f"The number {number} is an even number.")
 else:
-    print("Odd Number")
+    print(f"The number {number} is an odd number.")
