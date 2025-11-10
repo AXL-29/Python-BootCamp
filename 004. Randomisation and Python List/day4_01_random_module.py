@@ -16,5 +16,19 @@
 
 import random
 
-random.randint(1, 6)
-print(random)
+random_num_0_to_1 = random.random()
+print(random_num_0_to_1)
+
+random_int = random.randint(1, 6)
+print(random_int)
+
+random_float = random.uniform(1, 4)
+print(random_float)
+
+# Heads or Tail Challenge:
+
+random_flip = random.randint(0, 1)
+if random_flip == 0:
+    print("Tails")
+else:
+    print("Heads")
