@@ -24,7 +24,7 @@ password = []
 for i in range(1, nr_letters + 1):
     password.append(random.choice(letters))
 
-for j in range(1, nr_numbers + 1):
+for j in range(1, nr_symbols + 1):
     password.append(random.choice(symbols))
 
 for k in range(1, nr_numbers + 1):
