@@ -14,3 +14,6 @@ number = 10
 while number > 0:
     number -= 1
     print(number)
+
+# The main danger of a while loop is that it can easily lead to an 
+# infinite loop — meaning the code keeps running forever and never stops.
