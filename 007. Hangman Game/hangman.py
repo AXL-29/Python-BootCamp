@@ -88,6 +88,11 @@ while not game_over:
 
     guess = input("Guess a letter: ").lower()
 
+    if guess in correct_letters:
+        print(f"You already guess {guess}")
+        print(stages[lives])
+        continue
+
     display = " "
 
     for letter in chosen_word:
@@ -96,7 +101,6 @@ while not game_over:
             correct_letters.append(letter)
         elif letter in correct_letters:
             display += letter
-                
         else:
             display += "_"
     print(display)
@@ -108,7 +112,7 @@ while not game_over:
         if lives == 0:
             game_over = True
             print("You Lose.")
-    else: 
+    else:
         print(f"Good job! {guess} is in the word.")
         print(stages[lives])
 
