@@ -1,4 +1,6 @@
 import random
+from hangman_art import hangman_logo
+from hangman_words import word_list
 
 stages = [
     r"""
@@ -66,19 +68,16 @@ stages = [
     """
 ]
 
-
-
-word_list = ["apple", "banana", "mango"]
+print(hangman_logo)
 
 chosen_word = random.choice(word_list)
-print(chosen_word)
 
 placeholder = ""
 
 for i in chosen_word:
     placeholder += "_"
 
-print(placeholder)
+print(f"Word to guess: {placeholder}")
 
 game_over = False
 correct_letters = []
@@ -89,7 +88,7 @@ while not game_over:
 
     guess = input("Guess a letter: ").lower()
 
-    display = ""
+    display = " "
 
     for letter in chosen_word:
         if letter == guess:
