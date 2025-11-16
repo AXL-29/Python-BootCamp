@@ -9,7 +9,18 @@ direction = input("Type 'encode' to encrypt, type 'decode' to decrypt: ").lower(
 text = input("Type your message: ").lower()
 shift = int(input("Type the shift number: "))
 
-encrypted_text = []
-
 def encrypt(original_text, shift_amount):
-    print("test")
+    cipher_text = ""
+    for letter in original_text:
+        shifted_position = alphabet.index(letter) + shift_amount
+
+        shifted_position %= len(alphabet)
+        # Using modulo to wrap around.
+        # If shifted_position < len(alphabet), it stays the same.
+        # If it's >= len(alphabet), this brings it back into the 0–25 range.
+
+        cipher_text += alphabet[shifted_position]
+    
+    print(f"Here is the encoded result {cipher_text}")
+
+encrypt(original_text=text, shift_amount=shift)
