@@ -6,7 +6,7 @@ bid_dictionary = {}
 
 while again:
     name = input("What is your name?: ")
-    bid = input("What is your bid?: $")
+    bid = int(input("What is your bid?: $"))
     bid_dictionary[name] = bid
 
     invalid_input = True
@@ -21,10 +21,6 @@ while again:
             invalid_input = False
         else:
             print("Please enter 'y' or 'n' only.")
-
-# Make sure bids are numbers
-for name in bid_dictionary:
-    bid_dictionary[name] = int(bid_dictionary[name])
 
 # Find the highest bid
 highest_bid = 0
