@@ -6,42 +6,53 @@ should_continue = True
 
 while should_continue:
 
-    # TODO-1: Create a user input that ask "Do you want to play a game of Blackjack? Type 'y' or 'n'"
     play = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ").lower()
 
-    # TODO-2: Conditional statement if 'y' continue, else end the game.
-    player_card = []
-    computer_card = []
-
     if play == 'y':
-        # TODO-3: Display your cards, and computer's first card
-        for card in range(2):
-            card = random.choice(cards)
-            player_card.append(card)
-            player_score = sum(player_card)
-        print(f"Your cards are {player_card}, current score: {player_score}")
+        player_cards = []
+        computer_cards = []
 
-        for card in range(2):
-            card = random.choice(cards)
-            computer_card.append(card)
-        print(f"Computer first card is {computer_card[0]}")
+        # Deal 2 cards to player
+        for _ in range(2):
+            player_cards.append(random.choice(cards))
+        player_score = sum(player_cards)
 
-        #TODO-4: Prompt if the player want to draw another card.
+        # Deal 2 cards to computer
+        for _ in range(2):
+            computer_cards.append(random.choice(cards))
+        computer_score = sum(computer_cards)
+
+        print(f"Your cards: {player_cards}, current score: {player_score}")
+        print(f"Computer's first card: {computer_cards[0]}")
+
+        # Ask if player wants another card
         draw_card = input("Type 'y' to get another card, type 'n' to pass: ").lower()
+
         if draw_card == "y":
-            last_card = random.choice(cards)
-            player_card.append(last_card)
-            player_score = sum(player_card)
-            computer_score = sum(computer_card)
-        print(f"Your cards are {player_card}, current score: {player_score}")
-        print(f"Computer first card is {computer_card[0]}")
-        print(f"Computer final card is {computer_card[1]}")
+            player_cards.append(random.choice(cards))
+            player_score = sum(player_cards)
 
-        # final scores:
-        print(f"Your final score is {player_score}")
-        print(f"Computer final score: {computer_score}")
+        # After the draw decision, show final hands and scores
+        print("\n--- Final Results ---")
+        print(f"Your final cards: {player_cards}, final score: {player_score}")
+        print(f"Computer's final cards: {computer_cards}, final score: {computer_score}")
 
+        # Decide the winner
+        if player_score > 21 and computer_score > 21:
+            print("Both went over 21. It's a draw!")
+        elif player_score > 21:
+            print("You went over 21. You lose! 😭")
+        elif computer_score > 21:
+            print("Computer went over 21. You win! 😁")
+        elif player_score > computer_score:
+            print("You win! 😁")
+        elif player_score < computer_score:
+            print("You lose! 😤")
+        else:
+            print("It's a draw! 🙃")
+
+        print()  # blank line for spacing
 
     else:
         should_continue = False
-        # end of game
+        print("Game ended. Thanks for playing! 👋")
