@@ -38,7 +38,11 @@ while should_continue:
         print(f"Computer's final cards: {computer_cards}, final score: {computer_score}")
 
         # Decide the winner
-        if player_score > 21 and computer_score > 21:
+        if player_score == 21:
+            print("You Win! BlackJack!")
+        elif computer_score == 21:
+            print("You Lose! Banker BlackJack!")
+        elif player_score > 21 and computer_score > 21:
             print("Both went over 21. It's a draw!")
         elif player_score > 21:
             print("You went over 21. You lose! 😭")
