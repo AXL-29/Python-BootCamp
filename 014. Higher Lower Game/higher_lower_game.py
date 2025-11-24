@@ -6,4 +6,4 @@ print(art.logo)
 
 for _ in range(len(data)):
     compare_a = random.choice(data)
-print(compare_a)
+    print(compare_a)
