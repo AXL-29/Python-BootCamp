@@ -1,11 +1,6 @@
 import art
 from game_data import data
 import random
-import os  # For clearing the screen between rounds
-
-def clear_screen():
-    """Clears the terminal screen."""
-    os.system('cls' if os.name == 'nt' else 'clear')
 
 def format_account(account):
     """Return a formatted string for an account."""
@@ -34,7 +29,7 @@ def game_play():
         random_account_b = random.choice(data)
 
     while not is_game_over:
-        clear_screen()
+        # Display game state
         print(art.logo)
         print(f"Current Score: {score}\n")
         print(f"Compare A: {format_account(random_account_a)}")
