@@ -51,6 +51,10 @@ while is_game_over:
         else:
             print("Invalid input! Please choose between 'A' and 'B' only. Thank you!")
 
+    # Clear the screen:
+    print("\n" * 20)
+    print(logo)
+
 
     # 5.1 Get the follower count of each account
     follower_count_a = account_a["follower_count"]
