@@ -23,12 +23,14 @@ def check_answer(user_guess, a_followers, b_followers):
 # 1. Display Art
 print(logo)
 score = 0
-is_game_over = False
+account_b = random.choice(data)
+is_game_over = True
 
 # 8. Make the game repeatable.
-while not is_game_over:
+while is_game_over:
     # 2. Generate a random account from the game data.
-    account_a = random.choice(data)
+    # 9. Making account at position B become the next account at position A.
+    account_a = account_b
     account_b = random.choice(data)
 
     # 2.1 Re-generate account_b if equal to account_a
@@ -60,8 +62,7 @@ while not is_game_over:
     # 7. Score Keeping
     if is_correct:
         score += 1
-        print(f"You're right! Current score: {score}")
+        print(f"You're right! Current score: {score}\n")
     else:
-        print(f"Sorry, that's wrong! Final score: {score}")
-        is_game_over = True
-# 9. Making account at position B become the next account at position A.
+        print(f"Sorry, that's wrong! Final score: {score}\n")
+        is_game_over = False
