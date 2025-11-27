@@ -22,21 +22,20 @@ menu = ["Burger", "Pizza", "Sushi", "Salad", "Pasta", "Tacos", "Sandwich"]
 
 def menu_option(current_menu):
     print("Here's the available options for your lunch.")
-    for option in current_menu:
-        number_list = menu.index(option)
-        number_list += 1
-        print(f"{number_list}. {option}")
+    for i in range(len(current_menu)):
+        print(f"{i + 1}. {current_menu[i]}")
 
 def remove(current_menu):
     remove_option = input("What would you like to remove in the option?: ")
     for menu in current_menu:
         if menu == remove_option:
             current_menu.remove(menu)
+        
 
 def mini_menu():
     while True:
         try:
-            print("Mini Menu List:")
+            print("\nMini Menu List:")
             print("1. Add a new option")
             print("2. Show all options")
             print("3. Pick a random lunch")
