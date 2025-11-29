@@ -17,12 +17,33 @@
 
 subject_with_time = ([],[])
 
-num_of_subject = int(input("How many subjects do you want to study today?: "))
+def add_break_time():
+    """Let the user decide if they want to add a break in minute per subject and return the total minute."""
+    while True:
+        add_break = input("Do you want to add break? (yes/no): ").lower()
+        if add_break == "yes":
+            break_time = int(input("How long is each break (in minutes): "))
+            break_time *= len(subject_with_time[1])
+            return sum(subject_with_time[1], break_time)
+        elif add_break == "no":
+            return sum(subject_with_time[1])
 
-for _ in range(num_of_subject):
-    subject = input("Enter subject name: ")
-    time = int(input(f"Enter time in minutes for {subject}"))
-    subject_with_time[0].append(subject)
-    subject_with_time[1].append(time)
+        else:
+            print("Invalid input, please type 'yes' or 'no' only!")
 
-print(subject_with_time)
+def add_subject_time():
+    while True:
+        try:
+            num_of_subject = int(input("How many subjects do you want to study today?: "))
+            break
+        except ValueError as err:
+            print(f"Error: {err}, please try again!")
+
+    for _ in range(num_of_subject):
+        subject = input("Enter subject name: ")
+        time = int(input(f"Enter time in minutes for {subject}: "))
+        subject_with_time[0].append(subject)
+        subject_with_time[1].append(time)
+
+
+def study_plan():
