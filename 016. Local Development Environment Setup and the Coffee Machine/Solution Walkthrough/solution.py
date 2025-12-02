@@ -56,6 +56,33 @@ def check_resources(available_resources, coffee_ingredients):
     print("Yey! We have enough resources. Please make a payment.")
     return True
 
+def payment_process():
+    """Ask the user to insert coins and return the total amount."""
+    print("Please insert coins.")
+
+    try:
+        quarters = int(input("How many quarters? ($0.25): "))
+        dimes = int(input("How many dimes? ($0.10): "))
+        nickels = int(input("How many nickels ($0.05): "))
+        pennies = int(input("How many pennies ($0.01): "))
+    except ValueError:
+        print("Invalid input, treating as 0")
+        return 0
+
+    total = quarters * 0.25 + dimes * 0.10 + nickels * 0.05 + pennies * 0.01
+    return total
+
+def is_transaction_successful(money_received, drink_cost):
+    """Return True if payment is enough, otherwise False. Also handle change display."""
+    if money_received < drink_cost:
+        print("Sorry not enough money. Money refunded.")
+        return False
+    
+    change = round(money_received - drink_cost, 2)
+    if change > 0:
+        print(f"Here's ${change} in change.")
+    return True
+
 
 while True:
     choice = input("What would you like? (espresso/latte/cappuccino): ").lower()
@@ -71,4 +98,9 @@ while True:
         drink_costs = drink["cost"]
 
         if not check_resources(resources, drink_ingredients):
+            continue
+        
+        payment = payment_process()
+
+        if not is_transaction_successful(payment, drink_costs):
             continue
