@@ -32,7 +32,7 @@ resources = {
 
 profit = 0
 
-def report(user_choice):
+def report():
     for key, value in resources.items():
         if key == "water" or key == "milk":
             unit = "ml"
@@ -80,8 +80,16 @@ def is_transaction_successful(money_received, drink_cost):
     
     change = round(money_received - drink_cost, 2)
     if change > 0:
+        global profit
+        profit += drink_cost
         print(f"Here's ${change} in change.")
     return True
+
+def make_coffee(drink_name, drink_ingredients):
+    """Deduct the required ingredients from resources and 'make' the coffee."""
+    for ingredient, amount in drink_ingredients.items():
+        resources[ingredient] -= amount
+    print(f"Here is your {drink_name}. Enjoy!")
 
 
 while True:
@@ -90,7 +98,7 @@ while True:
         break
 
     elif choice == "report":
-        report(choice)
+        report()
 
     elif choice in menu:
         drink = menu[choice]
@@ -104,3 +112,8 @@ while True:
 
         if not is_transaction_successful(payment, drink_costs):
             continue
+
+        make_coffee(choice, drink_ingredients)
+
+    else:
+        print("Invalid choice. Please select espresso, latte, or cappuccino.")
