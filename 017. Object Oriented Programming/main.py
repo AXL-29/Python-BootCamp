@@ -16,5 +16,13 @@ from turtle import Turtle, Screen
 johny = Turtle()
 print(johny)
 
+
+# object.attributes
 my_screen = Screen()
 print(my_screen.canvheight)
+
+# object.method()
+johny.shape("turtle")
+johny.color("DarkBlue")
+johny.forward(100)
+my_screen.exitonclick()
