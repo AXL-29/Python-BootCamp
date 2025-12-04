@@ -2,24 +2,22 @@ from menu import Menu
 from coffee_maker import CoffeeMaker
 from money_machine import MoneyMachine
 
-coffee = CoffeeMaker()
-coffee_menu = Menu()
+money_machine = MoneyMachine()
+menu = Menu()
+coffee_maker = CoffeeMaker()
 
-machine_on = True
-
-while machine_on:
-    user_prompt = input("What would you like? (espresso/latte/cappuccino) or 'report' or 'off': ").lower()
+while True:
+    options = menu.get_items()
+    user_prompt = input(f"What would you like? ({options}): ").lower()
 
     if user_prompt == "off":
-        # Turn off the machine
-        machine_on = False
+        break
 
     elif user_prompt == "report":
-        # 1. Print report
-        coffee.report()
+        coffee_maker.report()
+        money_machine.report()
 
-    elif user_prompt in coffee_menu.get_items():
-        coffee_menu.find_drink(user_prompt)
-
-    else:
-        print("Invalid choice. Please select espresso, latte, cappuccino, report, or off.")
+    elif menu.find_drink(user_prompt):
+        if coffee_maker.is_resource_sufficient(menu.find_drink(user_prompt)):
+            if money_machine.make_payment(menu.find_drink(user_prompt).cost):
+                coffee_maker.make_coffee(menu.find_drink(user_prompt))
