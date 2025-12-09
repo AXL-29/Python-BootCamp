@@ -30,6 +30,14 @@ class User:
 
         # default attribute value:
         self.follower = 0
+        self.following = 0
+
+    # method - function that belongs to an object (created from a class)
+    # self - refers to the current object using the method
+    def follow(self, user):
+        user.follower += 1
+        self.following += 1
+
 
     pass  # pass means "do nothing" here, just a placeholder
 
@@ -44,12 +52,8 @@ user_1.id = "001"
 user_2.id = "002"
 
 # Accessing attributes of objects
-print(user_1.first_name)  # Output: John
-print(user_1.last_name)   # Output: Doe
-print(user_1.age)         # Output: 25
-print(user_1.id)          # Output: 001
-
-print(user_2.first_name)  # Output: Jane
-print(user_2.last_name)   # Output: Smith
-print(user_2.age)         # Output: 30
-print(user_2.id)          # Output: 002
+user_1.follow(user_2)
+print(user_1.follower)
+print(user_2.follower)
+print(user_1.following)
+print(user_2.following)
