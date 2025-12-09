@@ -15,4 +15,6 @@ for question in question_data:
 quiz = QuizBrain(question_bank)
 
 while quiz.still_has_question():
-    quiz.n_question()
+    user_answer, current_question = quiz.n_question()
+    quiz.check_answer(user_answer, current_question)
+
