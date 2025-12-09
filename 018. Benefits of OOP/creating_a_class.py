@@ -1,21 +1,55 @@
-# a class - is a blueprint for creating objects. It defines the data (attributes)
-# and the behaviors (methods) that the objects created from it will have.
+# A class is like a blueprint for creating objects.
+# It defines the data (attributes) and behaviors (methods) that each object will have.
 
 # Class = blueprint / template
-# Object (instance) = actual item created from that blueprint.
+# Object (instance) = an actual item created from that blueprint
 
-# Why do we use classes?
-# Classes let you:
-    # Group related data and functions together
-    # Organize code better
-    # Reuse code
-    # Represent real-world things in programming (like a car, student, bank account, etc.)
+# Why use classes?
+# - Group related data and functions together
+# - Organize code better
+# - Reuse code easily
+# - Represent real-world things in programming (like a car, student, bank account, etc.)
 
-# Basic Structure of a Class:
-
-# class naming convention use the PascalCase (ex: UserCountSize)
-
+# Class names usually use PascalCase (ex: UserCountSize)
 class User:
-    pass            # pass - continue to the next line of the code
+    # The constructor method runs automatically when you create an object.
+    # It is always named __init__(self)
+    def __init__(self, first_name, last_name, age):
+        """
+        Parameters:
+        - self: refers to the object being created
+        - first_name: the first name of the user (passed when creating object)
+        - last_name: the last name of the user (passed when creating object)
+        - age: the age of the user (passed when creating object)
+        """
+        # self.first_name, self.last_name, self.age are attributes of the object
+        # They store the values passed as parameters
+        self.first_name = first_name
+        self.last_name = last_name
+        self.age = age
 
-user_1 = User()
+        # default attribute value:
+        self.follower = 0
+
+    pass  # pass means "do nothing" here, just a placeholder
+
+# Creating objects (instances) from the User class
+# The values in parentheses are passed to the constructor parameters
+user_1 = User("John", "Doe", 25)
+user_2 = User("Jane", "Smith", 30)
+
+# Adding additional attributes to objects (optional)
+# Each object can have its own unique value
+user_1.id = "001"
+user_2.id = "002"
+
+# Accessing attributes of objects
+print(user_1.first_name)  # Output: John
+print(user_1.last_name)   # Output: Doe
+print(user_1.age)         # Output: 25
+print(user_1.id)          # Output: 001
+
+print(user_2.first_name)  # Output: Jane
+print(user_2.last_name)   # Output: Smith
+print(user_2.age)         # Output: 30
+print(user_2.id)          # Output: 002
