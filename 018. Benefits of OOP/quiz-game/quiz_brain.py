@@ -7,3 +7,10 @@ class QuizBrain:
         current_question = self.q_list[self.q_number]
         self.q_number += 1
         input(f"Q.{self.q_number}: {current_question.text} (True/False): ")
+
+    def still_has_question(self):
+        num_of_question = len(self.q_list)
+        if self.q_number < num_of_question:
+            return True
+        else:
+            return False
