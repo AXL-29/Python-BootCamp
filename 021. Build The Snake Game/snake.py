@@ -40,16 +40,26 @@ class Snake:
 
     def up(self):
         """Change the snake's head direction to up."""
-        self.head.setheading(UP)
+        if self.head.setheading() != DOWN:
+            self.head.setheading(UP)
+
+    def up(self):
+        """Change the snake's head direction to up, if not moving down."""
+        if self.head.heading() != DOWN:
+            self.head.setheading(UP)
 
     def down(self):
-        """Change the snake's head direction to down."""
-        self.head.setheading(DOWN)
+        """Change the snake's head direction to down, if not moving up."""
+        if self.head.heading() != UP:
+            self.head.setheading(DOWN)
 
     def left(self):
-        """Change the snake's head direction to left."""
-        self.head.setheading(LEFT)
+        """Change the snake's head direction to left, if not moving right."""
+        if self.head.heading() != RIGHT:
+            self.head.setheading(LEFT)
 
     def right(self):
-        """Change the snake's head direction to right."""
-        self.head.setheading(RIGHT)
+        """Change the snake's head direction to right, if not moving left."""
+        if self.head.heading() != LEFT:
+            self.head.setheading(RIGHT)
+
