@@ -22,11 +22,17 @@ class Snake:
     def create_snake(self):
         """Create the initial snake body from predefined positions."""
         for position in STARTING_POSITION:
-            segment = Turtle("square")
-            segment.color("white")
-            segment.penup()
-            segment.goto(position)
-            self.segments.append(segment)
+            self.add_segment(position)
+
+    def add_segment(self, position):
+        segment = Turtle("square")
+        segment.color("white")
+        segment.penup()
+        segment.goto(position)
+        self.segments.append(segment)
+
+    def extend(self):
+        self.add_segment(self.segments[-1].position())
 
     def move(self):
         """Move the snake forward by one step."""
