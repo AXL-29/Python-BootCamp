@@ -19,7 +19,6 @@ class Snake:
         self.create_snake()
         self.head = self.segments[0]
 
-
     def create_snake(self):
         """Create the initial snake body from predefined positions."""
         for position in STARTING_POSITION:
