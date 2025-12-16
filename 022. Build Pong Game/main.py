@@ -1,6 +1,7 @@
 import time
 from turtle import Screen
 from paddle import Paddle
+from scoreboard import Scoreboard
 from ball import Ball
 
 # --- Screen setup ---
@@ -14,6 +15,7 @@ screen.tracer(0)
 right_paddle = Paddle(350, 0)
 left_paddle = Paddle(-350, 0)
 ball = Ball()
+scoreboard = Scoreboard()
 
 # --- Keyboard controls ---
 screen.listen()
@@ -28,21 +30,10 @@ screen.onkeyrelease(left_paddle.stop_up, "w")
 screen.onkeypress(left_paddle.start_down, "s")
 screen.onkeyrelease(left_paddle.stop_down, "s")
 
-# --- Paddle collision helper ---
-def check_paddle_collision(ball, paddle, side="right"):
-    if side == "right":
-        if ball.xcor() > 320 and ball.xcor() < 350:
-            if abs(ball.ycor() - paddle.ycor()) < 50:
-                ball.bounce_x()
-    else:  # left paddle
-        if ball.xcor() < -320 and ball.xcor() > -350:
-            if abs(ball.ycor() - paddle.ycor()) < 50:
-                ball.bounce_x()
-
 # --- Main game loop ---
 while True:
     screen.update()
-    time.sleep(0.03)
+    time.sleep(ball.move_speed)
 
     # Move paddles
     left_paddle.move()
@@ -52,13 +43,19 @@ while True:
     ball.move()
 
     # Wall collision
-    if abs(ball.ycor()) > 290:
+    if abs(ball.ycor()) > 280:
         ball.bounce_y()
 
     # Paddle collisions
-    check_paddle_collision(ball, right_paddle, "right")
-    check_paddle_collision(ball, left_paddle, "left")
+    if ball.distance(right_paddle) < 50 and ball.xcor() > 320 or ball.distance(left_paddle) < 50 and ball.xcor() < -320:
+        ball.bounce_x()        
 
     # Ball reset if passed paddles
-    if ball.xcor() > 400 or ball.xcor() < -400:
+    if ball.xcor() > 380:
         ball.reset_position()
+        scoreboard.l_point()
+
+    if ball.xcor() < -380:
+        ball.reset_position()
+        scoreboard.r_point()
+    
