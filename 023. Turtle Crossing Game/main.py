@@ -11,6 +11,8 @@ screen.tracer(0)
 player = Player()
 car_manager = CarManager()
 
+car_manager.starting_cars()
+
 screen.listen()
 screen.onkey(player.go_up, "Up")
 
