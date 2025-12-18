@@ -1,5 +1,4 @@
 import time
-import random
 from turtle import Screen
 from player import Player
 from car_manager import CarManager
@@ -22,8 +21,7 @@ while game_is_on:
     screen.update()
 
     # create cars randomly
-    if random.randint(1, 6) == 1:
-        car_manager.create_car()
+    car_manager.spawn_car()
 
     # move all cars
     car_manager.move_cars()
@@ -38,5 +36,5 @@ while game_is_on:
     if player.ycor() > 280:
         player.reset_position()
         car_manager.level_up()
-
+        scoreboard.increase_level()
 screen.exitonclick()
