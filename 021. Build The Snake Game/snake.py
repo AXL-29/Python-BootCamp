@@ -48,11 +48,6 @@ class Snake:
         if self.head.setheading() != DOWN:
             self.head.setheading(UP)
 
-    def up(self):
-        """Change the snake's head direction to up, if not moving down."""
-        if self.head.heading() != DOWN:
-            self.head.setheading(UP)
-
     def down(self):
         """Change the snake's head direction to down, if not moving up."""
         if self.head.heading() != UP:
