@@ -4,7 +4,7 @@ import random
 COLORS = ["red", "orange", "yellow", "green", "blue", "purple"]
 STARTING_MOVE_DISTANCE = 5
 MOVE_INCREMENT = 10
-SPAWN_CHANCE = 10  # controls random spawn, static at all levels
+SPAWN_CHANCE = 6  # controls random spawn, static at all levels
 
 class CarManager:
     def __init__(self):
@@ -16,7 +16,7 @@ class CarManager:
         new_car.color(random.choice(COLORS))
         new_car.shapesize(stretch_wid=1, stretch_len=2)
         new_car.penup()
-        new_car.goto(300, random.randint(-280, 280))
+        new_car.goto(300, random.randint(-250, 250))
         new_car.setheading(180)
         self.cars.append(new_car)
 

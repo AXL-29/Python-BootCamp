@@ -33,7 +33,7 @@ while game_is_on:
             scoreboard.game_over()
 
     # player reaches finish line
-    if player.ycor() > 280:
+    if player.is_finish():
         player.reset_position()
         car_manager.level_up()
         scoreboard.increase_level()
