@@ -3,11 +3,13 @@
 # basic syntax: new_list = [expression for item in iterable]
 
 numbers = [1, 2, 3, 4, 5, 6]
+names = ["Alex", "Beth", "Caroline", "Dave", "Eleanor", "Freddie"]
+
 squares = [n * n for n in numbers]
 print(squares)
 
-name = "Jade Mark Gimpao"
-letter_list = [letter for letter in name]
+full_name = "Jade Mark Gimpao"
+letter_list = [letter for letter in full_name]
 print(letter_list)
 
 doubled = [d * 2 for d in range(1, 5)]
@@ -20,6 +22,9 @@ print(doubled)
 # syntax: [expression for item in iterable if condition]
 even_numbers = [n for n in numbers if n % 2 == 0]
 print(even_numbers)
+
+long_name = [name.upper() for name in names if len(name) > 5]
+print(long_name)
 
 # conditional expression (if-else) - this changes the value added to the list, not whether it's included.
 # syntax: [true_value if condition else false_value for item in iterable]
