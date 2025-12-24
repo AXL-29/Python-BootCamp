@@ -15,11 +15,12 @@ import tkinter
 
 window = tkinter.Tk()
 window.title("My GUI Program")
-window.minsize(width=800, height=800)
+window.minsize(width=400, height=400)
 
 # Label
 label = tkinter.Label(text="I am a Label", font=("Courier", 24, "bold"))
-label.pack()
+label.pack(side="bottom")
 
 
 window.mainloop()
+
