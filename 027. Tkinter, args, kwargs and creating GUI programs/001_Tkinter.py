@@ -11,15 +11,27 @@
 # Text	    Multi-line text
 # Canvas	Draw shapes/images
 
-import tkinter
+from tkinter import *
 
-window = tkinter.Tk()
+window = Tk()
 window.title("My GUI Program")
 window.minsize(width=400, height=400)
 
 # Label
-label = tkinter.Label(text="I am a Label", font=("Courier", 24, "bold"))
-label.pack(side="bottom")
+label = Label(text="I am a Label", font=("Courier", 24, "bold"))
+label.pack()
+
+# Button
+def button_clicked():
+    # label["text"] = "I got clicked"     # Either one of this can use to edit text in label
+    label.config(text=user_entry.get())
+
+button = Button(text="Click Me", command=button_clicked)
+button.pack()
+
+# Entry
+user_entry = Entry(width=10)
+user_entry.pack()
 
 
 window.mainloop()
