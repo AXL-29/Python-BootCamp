@@ -15,6 +15,20 @@
             # relx, rely -> relative position (0.0 to 1.0)
             # relwidth, relheight -> relative size
 
+    # 3. Grid Layout Manager - the grid layout manager places widgets in a table-like structure using rows and columns
+        # similar to an Excel sheet or HTML table.
+
+        # How grid Works
+        # You tell Tkinter:
+            # which row
+            # which column
+        # Tkinter then places the widget in that cell.
+
+# Adding Padding - padding is the extra space around the widgets so your GUI doesn't look cramped.
+# Padding with pack() & grid()
+    # padx and pady
+    # padx - horizontal space (left & right)
+    # pady - vertical space (top & bottom)
 
 
 from tkinter import *
@@ -29,15 +43,18 @@ window.minsize(width=500, height=300)
 
 # Label
 my_label = Label(text="I am a Label", font=("Arial", 24, "bold"))
-my_label.place(x=0, y=0)
+my_label.grid(row=1, column=1)
 
 # Button
-button = Button(text="Click Me", command=button_clicked)
-my_label.place(x=0, y=0)
+button1 = Button(text="Click Me", command=button_clicked)
+button1.grid(row=2, column=2)
+
+# Button
+button2 = Button(text="Click Me", command=button_clicked)
+button2.grid(row=1, column=3)
 
 # Entry
 my_input = Entry()
-my_label.place(x=0, y=0)
-
+my_input.grid(row=3, column=4)
 
 window.mainloop()
