@@ -93,5 +93,5 @@ def game():
             should_continue = False
             print("Thanks for playing! Goodbye!!!")
 
-
-game()
+if __name__ == "__main__":
+    game()
