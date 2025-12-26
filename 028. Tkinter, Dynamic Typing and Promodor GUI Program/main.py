@@ -1,4 +1,3 @@
-import math
 from tkinter import *
 
 # ---------------------------- CONSTANTS ------------------------------- #
@@ -15,7 +14,7 @@ LONG_BREAK_MIN = 20
 
 # ---------------------------- TIMER MECHANISM ------------------------------- #
 def start_timer():
-    count_down(1500)
+    count_down(25 * 60)
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
 # Event-Driven - a programming style where the flow of the program is controlled by events, not by a fixed step-by-step order.
@@ -27,7 +26,7 @@ def count_down(count):
     count_min = count // 60
     count_sec = count % 60
 
-    canvas.itemconfig(timer_text, text=f"{count_min}:{count_sec}")
+    canvas.itemconfig(timer_text, text=f"{count_min:02}:{count_sec:02}")
     if count > 0:
         window.after(1000, count_down, count - 1)
 
