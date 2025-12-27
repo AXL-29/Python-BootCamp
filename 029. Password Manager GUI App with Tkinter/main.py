@@ -42,6 +42,12 @@ def password_generator():
 
     # Copy the password.
     pyperclip.copy(generated_password)
+    
+    messagebox.showinfo(
+    title="Copied",
+    message="Password copied to clipboard!"
+)
+
 
 # SAVE PASSWORD
 
