@@ -1,20 +1,41 @@
 from tkinter import *
+from tkinter import messagebox
 
-# ---------------------------- PASSWORD GENERATOR ------------------------------- #
+# PASSWORD GENERATOR
 
-# ---------------------------- SAVE PASSWORD ------------------------------- #
+# SAVE PASSWORD
 def save_data():
     website = website_entry.get()
     email = username_entry.get()
     password = password_entry.get()
 
-    with open("data.txt", "a") as data:
-        data.write(f"{website} | {email} | {password}\n")
+    # Dialog Box - is a small window that communicates with the user and usually requires and action (OK, Cancel, Yes/No)
+    if website == "" or password == "":
+        # The program waits until the user clicks a button -> this is called modal.
+        messagebox.showwarning(
+            title="Oops",
+            message="Please don't leave any fields empty."
+        )
 
-    website_entry.delete(0, END)
-    password_entry.delete(0, END)
+    else:
+        is_ok = messagebox.askokcancel(
+                title= website,
+                message = f"""These are the details entered:
 
-# ---------------------------- UI SETUP ------------------------------- #
+                Email: {email}
+                Password: {password}
+                
+                Is it okay to save?
+                """
+            ) 
+
+        if is_ok:
+            with open("data.txt", "a") as data:
+                data.write(f"{website} | {email} | {password}\n")
+                website_entry.delete(0, END)
+                password_entry.delete(0, END)
+
+# UI SETUP
 
 window = Tk()
 window.title("Password Manager")
