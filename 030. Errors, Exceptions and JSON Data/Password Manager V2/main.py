@@ -22,6 +22,48 @@ SYMBOLS = [
     "<", ">", "/", "?", "|", "\\", "~", "`"
 ]
 
+# SEARCH DATA
+def search_data():
+    website = website_entry.get()
+
+    if website == "":
+        messagebox.showwarning(
+            title="Oops",
+            message="Please enter a website to search."
+        )
+        return
+
+    try:
+        with open("data.json", "r") as data_file:
+            data = json.load(data_file)
+
+    except FileNotFoundError:
+        messagebox.showerror(
+            title="Error",
+            message="No data file found."
+        )
+
+    except json.JSONDecodeError:
+        messagebox.showerror(
+            title="Error",
+            message="Data file is empty or corrupted."
+        )
+
+    else:
+        if website in data:
+            email = data[website]["email"]
+            password = data[website]["password"]
+
+            messagebox.showinfo(
+                title=website,
+                message=f"Email: {email}\nPassword: {password}"
+            )
+        else:
+            messagebox.showerror(
+                title="Not Found",
+                message=f"No details found for {website}."
+            )
+
 # PASSWORD GENERATOR
 
 def password_generator():
@@ -129,9 +171,9 @@ Label(text="Email/Username:").grid(row=2, column=0, sticky="e")
 Label(text="Password:").grid(row=3, column=0, sticky="e")
 
 # Entries
-website_entry = Entry(width=40)
+website_entry = Entry(width=21)
 website_entry.focus()
-website_entry.grid(row=1, column=1, columnspan=2, sticky="e")
+website_entry.grid(row=1, column=1, sticky="e")
 
 username_entry = Entry(width=40)
 username_entry.insert(0, "gimpaojade4@gmail.com")
@@ -142,8 +184,15 @@ password_entry.grid(row=3, column=1, sticky="e")
 
 # Buttons
 Button(
+    text="Search Button",
+    command=search_data,
+    width=15
+).grid(row=1, column=2, sticky="e")
+
+Button(
     text="Generate Password",
-    command=password_generator
+    command=password_generator,
+    width=15
 ).grid(row=3, column=2, sticky="e")
 
 Button(
