@@ -86,19 +86,29 @@ def save_data():
         )
 
         if is_ok:
-            # Read existing data
-            with open("data.json", "r") as data_file:
-                data = json.load(data_file)
+            try:
+                with open("data.json", "r") as data_file:
+                    data = json.load(data_file)
 
-            # Update data
-            data.update(new_data)
+            except FileNotFoundError:
+                # File does not exist
+                data = new_data
 
-            # Save updated data
-            with open("data.json", "w") as data_file:
-                json.dump(data, data_file, indent=4)
+            except json.JSONDecodeError:
+                # File exists but is empty or invalid
+                data = new_data
 
-            website_entry.delete(0, END)
-            password_entry.delete(0, END)
+            else:
+                # File exists and has valid JSON
+                data.update(new_data)
+
+            finally:
+                with open("data.json", "w") as data_file:
+                    json.dump(data, data_file, indent=4)
+
+                website_entry.delete(0, END)
+                password_entry.delete(0, END)
+
 
 
 # UI SETUP
