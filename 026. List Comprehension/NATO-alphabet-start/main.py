@@ -9,8 +9,8 @@ while True:
     try:
         user_input = input("Enter your name: ").upper()
         phonetic_code = [nato_dict[letter] for letter in user_input]
-        print(phonetic_code)
-        break
-    
     except KeyError:
         print("Sorry, only letter in the alphabet please.")
+    else:
+        print(phonetic_code)
+        break
