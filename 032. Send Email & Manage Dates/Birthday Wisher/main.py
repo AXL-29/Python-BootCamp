@@ -1,3 +1,8 @@
+"""
+Automatically sends a personalized birthday email by checking today's date against a CSV file,
+selecting a random letter template, and sending it via SMTP.
+"""
+
 import random
 import pandas
 import smtplib
