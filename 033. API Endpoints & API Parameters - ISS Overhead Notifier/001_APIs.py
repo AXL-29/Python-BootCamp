@@ -32,7 +32,45 @@
 # PUT               Update data
 # DELETE            Remove data
 
+# HTTP Status Codes (What the Server is Telling You)
+# HTTP status codes are numbers returned by the server to tell you the result of your API request.
+
+# 1XX: Hold On
+# 2XX: Here You Go
+# 3XX: Go Away
+# 4XX: You Screwed Up
+# 5XX: I Screwed Up
+
+# Common Status Code You'll See
+# Code      Meaning             What it Means for You
+# 200       OK                  Request successeded
+# 201       Created             Data was succesfully created
+# 400       Bad Request         You sent wrong parameters
+# 401       Unauthorized        Missing/invalid API key
+# 403       Forbidden           Access denied
+# 404       Not Found           Endpoint doesn't exist
+# 500       Server Error        Problem on server side
+
+# Exceptions (When Python Says "Something Broke")
+# An exception is an error that occurs while your program is running
+
+# Common API-related Exceptions:
+# Exception             Cause
+# ConnectionError       No internet / API down
+# Timeout               API too slow
+# HTTPError             Non-200 status code
+# KeyError              Missing key in JSON
+# ValueError            Invalid data format
+
 import requests
 
 response = requests.get(url="http://api.open-notify.org/iss-now.json")
-print(response)
+response.raise_for_status()
+
+data = response.json()
+latitude = data["iss_position"]["latitude"]
+longitude = data["iss_position"]["longitude"]
+
+iss_position = (latitude, longitude)
+
+print(iss_position)
