@@ -2,14 +2,14 @@ import smtplib, random
 import datetime as dt
 
 EMAIL = "gimpaojade4@gmail.com"
-APP_PASSWORD = "lhlx yniz kiix ohhr"
+APP_PASSWORD = "password"
 
-def random_qoutes():
+def random_quotes():
     with open("quotes.txt", "r") as quote_file:
         all_quotes = quote_file.readlines()
-        qoute = random.choice(all_quotes)
+        quotes = random.choice(all_quotes)
     
-    return qoute
+    return quotes
 
 def smtp_email(s_quote, email_subject=""):
     with smtplib.SMTP("smtp.gmail.com", 587) as connection:
@@ -28,7 +28,7 @@ now = dt.datetime.now()
 weekday = now.weekday()
 
 subject = "Motivational Quotes"
-quote = random_qoutes()
+quote = random_quotes()
 
 if weekday == 0:
     smtp_email(quote, subject)
