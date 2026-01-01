@@ -63,14 +63,31 @@
 # ValueError            Invalid data format
 
 import requests
+from datetime import datetime
 
-response = requests.get(url="http://api.open-notify.org/iss-now.json")
+iss_response = requests.get(url="http://api.open-notify.org/iss-now.json")
+iss_response.raise_for_status()
+
+iss_data = iss_response.json()
+latitude = iss_data["iss_position"]["latitude"]
+longitude = iss_data["iss_position"]["longitude"]
+
+iss_position = {
+    "lat": latitude,
+    "lng": longitude,
+    "formatted": 0,
+}
+
+response = requests.get(url="https://api.sunrise-sunset.org/json", params=iss_position, verify=False)
 response.raise_for_status()
 
 data = response.json()
-latitude = data["iss_position"]["latitude"]
-longitude = data["iss_position"]["longitude"]
+sunrise = data["results"]["sunrise"].split("T")[1].split(":")[0]
+sunset = data["results"]["sunset"].split("T")[1].split(":")[0]
 
-iss_position = (latitude, longitude)
+print(sunrise)
+print(sunset)
 
-print(iss_position)
+time_now = datetime.now()
+hour_now = time_now.hour
+print(hour_now)
