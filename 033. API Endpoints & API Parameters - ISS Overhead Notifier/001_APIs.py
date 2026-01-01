@@ -11,4 +11,28 @@
     # lng - Longitude
     # formatted=0 - returns time in 24-hrs (ISO) format
 
+# An API request is a message sent from one application (the client) 
+# to another application (the server) asking for data or an action.
 
+# API Request Flow
+# 1. Your program sends a request
+# 2. The server receives it
+# 3. The server processes the request
+# 4. The server sends back a response (usually JSON)
+
+# What's Inside an API Request?
+    # Endpoint(URL) - where the request is sent.
+
+# Method (HTTP Verb)
+# Tells the server what you want to do.
+
+# Method            Purpose
+# GET               Get data
+# POST              Send/create data
+# PUT               Update data
+# DELETE            Remove data
+
+import requests
+
+response = requests.get(url="http://api.open-notify.org/iss-now.json")
+print(response)
