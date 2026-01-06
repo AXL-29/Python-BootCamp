@@ -9,6 +9,7 @@ TYPE = "boolean"
 params = {
     "amount": AMOUNT,
     "type": TYPE,
+    "category": 18,
 }
 
 response = requests.get(url=URL, params=params, verify=False)
