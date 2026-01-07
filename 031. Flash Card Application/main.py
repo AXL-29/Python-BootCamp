@@ -9,11 +9,12 @@ from tkinter import *
 import pandas
 import random
 
-# ---------------------------- CONSTANTS ---------------------------- #
+# CONSTANTS
 BACKGROUND_COLOR = "#B1DDC6"
 FLIP_DELAY_MS = 3000
 
-# ---------------------------- DATA LOADING ---------------------------- #
+# DATA LOADING
+
 # Load ONLY remaining words; create progress file on first run
 try:
     to_learn = pandas.read_csv("./data/words_to_learn.csv").to_dict(orient="records")
@@ -25,7 +26,7 @@ except FileNotFoundError:
 current_card = {}
 flip_timer = None
 
-# ---------------------------- FUNCTIONS ---------------------------- #
+# FUNCTIONS
 def next_card():
     """Selects a new French word, resets the card to front, and starts the flip timer."""
     global current_card, flip_timer
@@ -73,7 +74,7 @@ def is_known():
 
     next_card()
 
-# ---------------------------- UI SETUP ---------------------------- #
+# UI SETUP
 window = Tk()
 window.title("Flash Card Application")
 window.config(bg=BACKGROUND_COLOR, padx=50, pady=50)
@@ -126,6 +127,6 @@ Button(
     activebackground=BACKGROUND_COLOR
 ).grid(row=1, column=1, padx=50)
 
-# ---------------------------- START APP ---------------------------- #
+# START APP
 next_card()
 window.mainloop()
