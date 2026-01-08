@@ -14,9 +14,14 @@ response = requests.get(url=OWM_ENDPOINT, params=parameter)
 response_code = response.status_code
 data = response.json()
 
+will_rain = False
+
 for forecast in data.get("list", []):
     if forecast.get("weather"):
         weather_id =  forecast["weather"][0]["id"]
 
         if weather_id < 700:
-            print("Bring an umbrella")
+            will_rain = True
+
+if will_rain:
+    print("Bring an umbrella!")
