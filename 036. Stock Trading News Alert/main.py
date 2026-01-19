@@ -12,9 +12,6 @@ NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
 STOCK_API_KEY = "EC5XGS83V10USF9G"
 NEWS_API_KEY = "0afbbc1cb1124276b67efaddae81bd4f"
 
-# STEP 1: Use https://www.alphavantage.co/documentation/#daily
-# When stock price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
-
 stock_params = {
     "function": "TIME_SERIES_DAILY",
     "symbol": STOCK_NAME,
@@ -33,12 +30,7 @@ day_before_close = float(daily_prices[1]["4. close"])
 
 difference = round(abs(yesterday_close - day_before_close), 2)
 diff_percent = round((difference / float(yesterday_close)) * 100, 2)
-print(yesterday_close, day_before_close)
-print(difference)
-print(diff_percent)
 
-# STEP 2: https://newsapi.org/ 
-# Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
 if diff_percent > 0.20:
     news_params = {
         "qInTitle": COMPANY_NAME,
@@ -49,11 +41,10 @@ if diff_percent > 0.20:
 
     news_article = news_response.json()["articles"]
     three_articles = news_article[:3]
-    print(three_articles)
 
-    ## STEP 3: Use twilio.com/docs/sms/quickstart/python
-    #to send a separate message with each article's title and description to your phone number. 
+    news = [f"Headline: {article['title']}. \nBrief: {article['description']}" for article in three_articles]
 
+    print(news)
 #TODO 8. - Create a new list of the first 3 article's headline and description using list comprehension.
 
 #TODO 9. - Send each article as a separate message via Twilio. 
