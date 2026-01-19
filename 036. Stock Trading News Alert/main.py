@@ -11,10 +11,9 @@ NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
 
 STOCK_API_KEY = "EC5XGS83V10USF9G"
 
-    ## STEP 1: Use https://www.alphavantage.co/documentation/#daily
+# STEP 1: Use https://www.alphavantage.co/documentation/#daily
 # When stock price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
 
-#TODO 1. - Get yesterday's closing stock price. Hint: You can perform list comprehensions on Python dictionaries. e.g. [new_value for (key, value) in dictionary.items()]
 stock_params = {
     "function": "TIME_SERIES_DAILY",
     "symbol": STOCK_NAME,
@@ -31,15 +30,15 @@ daily_prices = [value for (key, value) in time_series.items()]
 yesterday_close = float(daily_prices[0]["4. close"])
 day_before_close = float(daily_prices[1]["4. close"])
 
+difference = round(abs(yesterday_close - day_before_close), 2)
+diff_percent = round((difference / float(yesterday_close)) * 100, 2)
 print(yesterday_close, day_before_close)
-
-#TODO 2. - Get the day before yesterday's closing stock price
-
-#TODO 3. - Find the positive difference between 1 and 2. e.g. 40 - 20 = -20, but the positive difference is 20. Hint: https://www.w3schools.com/python/ref_func_abs.asp
-
-#TODO 4. - Work out the percentage difference in price between closing price yesterday and closing price the day before yesterday.
-
+print(difference)
+print(diff_percent)
 #TODO 5. - If TODO4 percentage is greater than 5 then print("Get News").
+
+if diff_percent > 0.20:
+    print("Get News")
 
     ## STEP 2: https://newsapi.org/ 
     # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
